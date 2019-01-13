@@ -26,11 +26,6 @@ def read_csv(file_name):
 	Returns:
 		List of tuples containing the prompt and punchline. 
 		The first item is the prompt. The second item is the punchline.
-		example:
-
-		[("Why don't people play cards in the jungle?", "There's too many cheetahs!"), 
-			("What is the least spoken language in the world?", "Sign language"),
-			("What did the pirate say on his 80th birthday?", "Aye matey!")]
 	'''
 	try:
 		with open(file_name) as csv_file:

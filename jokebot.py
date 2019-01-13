@@ -49,7 +49,7 @@ def read_user_input():
 
 	'''
 	while True:
-		time.sleep(1) #delays prompt by 1 second
+		time.sleep(0.3)
 		response = input("Type next for another joke and quit to stop. \n")
 		if response == "next":
 			return True
@@ -66,6 +66,11 @@ def get_jokes():
 	Returns:
 		List of tuples containing the prompt and punchline. 
 		The first item is the prompt. The second item is the punchline.
+		example:
+
+		[("Why don't people play cards in the jungle?", "There's too many cheetahs!"), 
+			("What is the least spoken language in the world?", "Sign language"),
+			("What did the pirate say on his 80th birthday?", "Aye matey!")]
 	'''
 	if len(sys.argv) == 1:
 		jokes_list = get_reddit_jokes()

@@ -17,11 +17,6 @@ def get_reddit_jokes():
 	Returns:
 		A list of tuples containing the prompt and the punchline of the joke. 
 		The first item is the prompt. The second item is the punchline.
-		example:
-
-			[("What is brown and sticky?", "A stick."), 
-			("What do you call an elephant that doesn't matter?", "An irrelephant."),
-			("What do you call a man with a rubber toe?", "Roberto.")]
 	'''
 	json_dict = get_json("https://www.reddit.com/r/dadjokes.json")
 	interr_word_list = ['how','why','what', 'is', 'who', 'if', 'when', 'which', 'do', 'are']
