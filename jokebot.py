@@ -1,3 +1,8 @@
+'''Main file for running jokebot.
+
+Run python jokebot.py for joke to deliver jokes taken from Reddit.
+Run python jokebot.py file_name.csv to deliver jokes from the given CSV file.
+'''
 
 import sys
 import time
@@ -6,7 +11,6 @@ from csv_jokes import get_csv_jokes
 from reddit_jokes import get_reddit_jokes
 from utils import deliver_error_message
 
-#main function
 def main():
 	jokes_list = get_jokes()
 	num_deliv_jokes = 0 #tracks the number of jokes delievered
@@ -45,7 +49,7 @@ def read_user_input():
 
 	'''
 	while True:
-		time.sleep(1)
+		time.sleep(1) #delays prompt by 1 second
 		response = input("Type next for another joke and quit to stop. \n")
 		if response == "next":
 			return True
@@ -60,7 +64,8 @@ def get_jokes():
 
 	Args: None
 	Returns:
-		List of jokes.
+		List of tuples containing the prompt and punchline. 
+		The first item is the prompt. The second item is the punchline.
 	'''
 	if len(sys.argv) == 1:
 		jokes_list = get_reddit_jokes()

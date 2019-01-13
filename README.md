@@ -14,17 +14,19 @@ Read the Edge Cases section for more details.
 
 ## Edges Cases
 ### Involving System Arguments
-* **Incorrect formatting of CSV file name:** prints "Please reference a CSV file" and ends program
+* **Incorrect formatting of CSV file name:** prints "Please reference a CSV file and ends program
 * **More than 2 arguments passed in:** prints "Unable to interpret command" and ends program
 
 ### Involving CSV file
 * **Does not exist/Not in current directory:** prints "Not in current directory" and ends program
-* **Corrupted file/Incorrect format(i.e. empty row, missing columm)/No complete jokes:** prints "Unable to read CSV file" and ends program
-* **Empty prompt or punchline:** Skips joke
+* **Corrupted file:** prints "Unable to read CSV file" and ends program
+* **Incorrect format (incorrect number of columns):** prints "No jokes available." and ends program
+* **Missing prompt or punchline:** Skips joke
+* **Empty row:** Skips empty row
 
 ### Involving Reddit Jokes 
-* **No Internet Connection/Changes made to Reddit JSON:** prints "Unable to process jokes from Reddit" and ends program
-* **No jokes match guidelines:** prints "No jokes available. Check back later." and ends program
+* **No Internet Connection/Changes made to Reddit JSON:** prints "Unable to process jokes from reddit" and ends program
+* **No jokes match guidelines:** prints "No jokes available." and ends program
 
 ## Resources
 * [Jokebot Spec](https://github.com/csmberkeley/tech-comm-takehome-exercise)
