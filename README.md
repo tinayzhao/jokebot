@@ -2,11 +2,15 @@
 My submisson for the take-home assignment for the Spring 2019 CSM Tech Committee Application.
 
 ## Functionality
-The purpose of the Jokebot is to deliver prompts and punchlines to the user. Then, the user can type `next` to hear another joke or `quit` to stop the program. If the Jokebot runs out of jokes, the program stops. 
+The purpose of the Jokebot is to deliver prompts and punchlines to the user. Then, we can type `next` to hear another joke or `quit` to stop the program. If the Jokebot runs out of jokes, the program stops. 
 
-You can run program from the command line with Option 1: `python jokebot.py` or Option 2: `python jokebot.py file_name.csv`. Option 1 reads jokes from /r/dadjokes. Option 2 reads jokes from a provided csv file. The file must be in the same directory as `jokebot.py`.
+There are two ways to correctly run Jokebot from the command line:
 
-Read Edge Cases section for more details.
+**Option 1:** Running `python jokebot.py`reads jokes from /r/dadjokes.
+
+**Option 2:** `python jokebot.py file_name.csv` reads jokes from the provided csv file. The file must be in the same directory as `jokebot.py`.
+
+Read the Edge Cases section for more details.
 
 ## Edges Cases
 ### Involving System Arguments

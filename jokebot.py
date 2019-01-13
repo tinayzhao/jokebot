@@ -12,7 +12,7 @@ def main():
 	for joke in jokes_list:
 		deliver_joke(joke[0], joke[1])
 		num_deliv_jokes += 1
-		if num_deliv_jokes != len(jokes_list) and not read_user_input(): #avoids prompting the user after delivering the last joke
+		if num_deliv_jokes != len(jokes_list) and not read_user_input(): #stops prompting the user after delivering the last joke
 			break
 
 def deliver_error_message(msg):
@@ -21,30 +21,52 @@ def deliver_error_message(msg):
 
 #returns a list of jokes depending on command line args
 def get_jokes(): 
+	'''Interprets command line arguments to obtain jokes. 
+
+	Args: None
+	Returns:
+		List of jokes.
+	'''
 	if len(sys.argv) == 1:
 		jokes_list = reddit_jokes()
 		if not jokes_list:
 			deliver_error_message("No jokes available. Check back later.")
 	elif len(sys.argv) == 2:
-		csv_file = sys.argv[1]
-		if csv_file.split(".")[-1] != "csv":
-			deliver_error_message("Please reference a CSV file.")
-		if not os.path.isfile(csv_file):
-			deliver_error_message("Cannot find joke file in current directory.")
-		jokes_list = read_csv(csv_file)
+		jokes_list = csv_jokes()
 		if not jokes_list:
 			deliver_error_message("Unable to read CSV file.")
 	else:
 		deliver_error_message("Unable to interpret command.")
 	return jokes_list
 
-#helper function that reads CSV file and returns list of tuples
-#returns False if file is corrupted
+def csv_jokes(): 
+	csv_file = sys.argv[1]
+	if csv_file.split(".")[-1] != "csv":
+			deliver_error_message("Please reference a CSV file.")
+		if not os.path.isfile(csv_file):
+			deliver_error_message("Cannot find joke file in current directory.")
+	return read_csv(csv_file)
+
+
 def read_csv(file_name):
+	''' Reads jokes from a CSV file.
+	
+	Args: 
+		file_name: String of CSV file name
+	Returns:
+		List of tuples containing the prompt and punchline. 
+		The first item is the prompt. The second item is the punchline.
+		example:
+
+		[("Why don't people play cards in the jungle?", "There's too many cheetahs!"), 
+			("What is the least spoken language in the world?", "Sign language"),
+			("What did the pirate say on his 80th birthday?", "Aye matey!")]
+
+	'''
 	try:
 		with open(file_name) as csv_file:
 			table = csv.reader(csv_file, delimiter=',')
-			return [(row[0], row[1]) for row in table if row[0] and row[1]]
+			return [(row[0], row[1]) for row in table if len(row) == 2 and row[0] and row[1]]
 	except:
 		return False
 
@@ -53,9 +75,8 @@ def deliver_joke(prompt, punchline):
 	
 	Args: 
 		prompt: string for joke setup
-		punchline: string for joke punchline
-	Returns:
-		
+		punchline: string for joke punchline of the joke
+	Returns: None
 	'''
 	if prompt and punchline:
 		print(prompt)
@@ -71,8 +92,8 @@ def read_user_input():
 
 	Returns: 
 		A boolean value. 
-		Returns True if user responds with 'next'. False if response is 'quit'.
-		Prints 'I don't understand' and prompts user again. 
+		True if user responds with 'next'. False if response is 'quit'.
+		Otherwise, prints 'I don't understand' and prompts again. 
 
 	'''
 	while True:
@@ -97,6 +118,7 @@ def reddit_jokes():
 	Args: None
 	Returns:
 		A list of tuples containing the prompt and the punchline of the joke. 
+		The first item is the prompt. The second item is the punchline.
 		example:
 
 			[("What is brown and sticky?", "A stick."), 
